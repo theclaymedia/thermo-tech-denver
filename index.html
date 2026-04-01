@@ -333,6 +333,141 @@
   .footer-bottom a { color: rgba(255,255,255,0.45); transition: color 0.2s; }
   .footer-bottom a:hover { color: var(--white); }
 
+  /* ─── ABOUT US (INTRO) ─── */
+  .about-us-section { padding: 80px 0; background: var(--white); }
+  .about-us-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+  }
+  .about-us-text .overline {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 8px;
+  }
+  .about-us-text h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2rem); font-weight: 800;
+    line-height: 1.2; margin-bottom: 18px;
+  }
+  .about-us-text p {
+    color: var(--text-body); line-height: 1.8; font-size: 0.92rem; margin-bottom: 14px;
+  }
+  .about-us-image-container {
+    border-radius: var(--radius-lg); overflow: hidden;
+    background: var(--light-blue); aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-lg);
+  }
+  .about-us-image-container img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-section { padding: 80px 0; background: var(--off-white); }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
+  }
+  .testimonial-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    padding: 32px; box-shadow: var(--shadow); border: 1px solid var(--warm-gray);
+    transition: all 0.3s var(--ease);
+  }
+  .testimonial-card:hover {
+    transform: translateY(-4px); box-shadow: var(--shadow-lg);
+  }
+  .testimonial-stars {
+    display: flex; gap: 2px; margin-bottom: 16px; color: var(--orange);
+  }
+  .testimonial-card blockquote {
+    font-size: 0.92rem; color: var(--text-body); line-height: 1.8;
+    font-style: italic; margin-bottom: 20px;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .testimonial-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--light-blue); display: flex; align-items: center;
+    justify-content: center; font-weight: 700; font-size: 0.85rem;
+    color: var(--navy);
+  }
+  .testimonial-name { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); }
+  .testimonial-role { font-size: 0.78rem; color: var(--text-muted); }
+
+  /* ─── FEATURED PRODUCTS CAROUSEL ─── */
+  .featured-section { padding: 80px 0; background: var(--off-white); overflow: hidden; }
+  .featured-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 48px; flex-wrap: wrap; gap: 16px;
+  }
+  .featured-track-wrapper { position: relative; }
+  .featured-track {
+    display: flex; gap: 24px; transition: transform 0.5s var(--ease);
+  }
+  .featured-slide {
+    min-width: calc(33.333% - 16px); flex-shrink: 0;
+    background: var(--white); border-radius: var(--radius-lg);
+    border: 1px solid var(--warm-gray); overflow: hidden;
+    transition: all 0.3s var(--ease);
+  }
+  .featured-slide:hover {
+    transform: translateY(-4px); box-shadow: var(--shadow-lg);
+  }
+  .featured-slide-img {
+    width: 100%; aspect-ratio: 16/10; background: var(--navy-deep);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .featured-slide-img svg { width: 48px; height: 48px; color: rgba(255,255,255,0.3); }
+  .featured-slide-img img { width: 100%; height: 100%; object-fit: contain; padding: 20px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); }
+  .featured-slide-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--orange); color: var(--white);
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+  }
+  .featured-slide-body { padding: 24px; }
+  .featured-slide-body h3 {
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .featured-slide-body p {
+    font-size: 0.85rem; color: var(--text-body); line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .featured-slide-body .card-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.8rem; font-weight: 700; color: var(--orange);
+    text-transform: uppercase; letter-spacing: 0.03em; transition: gap 0.3s;
+  }
+  .featured-slide-body .card-link:hover { gap: 10px; }
+  .featured-slide-body .card-link::after { content: '→'; }
+  .featured-controls {
+    display: flex; gap: 8px; align-items: center;
+  }
+  .featured-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--white); border: 1px solid var(--warm-gray);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.25s var(--ease); color: var(--text-dark);
+  }
+  .featured-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .featured-btn:disabled { opacity: 0.35; cursor: default; }
+  .featured-btn:disabled:hover { background: var(--white); color: var(--text-dark); border-color: var(--warm-gray); }
+  .featured-dots {
+    display: flex; gap: 6px; justify-content: center; margin-top: 32px;
+  }
+  .featured-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--silver); border: none; cursor: pointer;
+    transition: all 0.3s var(--ease); padding: 0;
+  }
+  .featured-dot.active { background: var(--orange); width: 24px; border-radius: 4px; }
+
+  @media (max-width: 1024px) {
+    .featured-slide { min-width: calc(50% - 12px); }
+  }
+  @media (max-width: 768px) {
+    .featured-slide { min-width: 100%; }
+  }
+
   /* ─── ANIMATIONS ─── */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -346,6 +481,8 @@
   @media (max-width: 1024px) {
     .products-grid { grid-template-columns: repeat(2, 1fr); }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-us-grid { grid-template-columns: 1fr; gap: 40px; }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-main { grid-template-columns: 1fr 1fr; }
     .info-grid { grid-template-columns: 1fr; }
   }
@@ -358,6 +495,7 @@
     }
     .nav.open a { font-size: 1.05rem; padding: 12px 24px; }
     .products-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
     .footer-main { grid-template-columns: 1fr; }
     .top-bar .container { justify-content: center; text-align: center; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -456,6 +594,159 @@
   </div>
 </section>
 
+<!-- ═══ ABOUT US (INTRO) ═══ -->
+<section class="about-us-section">
+  <div class="container">
+    <div class="about-us-grid">
+      <div class="about-us-text">
+        <div class="overline">About Us</div>
+        <h2>Denver's Trusted Name in Flexible Piping Solutions</h2>
+        <p>Thermo Tech Inc. is a custom manufacturer of flexible connectors, expansion joints, and compensators based in Denver, Colorado. Since 1954, we've been engineering precision piping solutions for sanitary, industrial, and specialty applications across the country.</p>
+      </div>
+      <div class="about-us-image-container">
+        <img src="images_and_videos/about-us-image1.jpg" alt="About Thermo Tech">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURED PRODUCTS CAROUSEL ═══ -->
+<section class="featured-section">
+  <div class="container">
+    <div class="featured-header">
+      <div class="section-header" style="margin-bottom:0;">
+        <div class="overline">Featured Products</div>
+        <h2>Solutions for Every Piping Challenge</h2>
+        <p>Explore our most popular flexible connectors, expansion joints, and custom fabrication solutions.</p>
+      </div>
+      <div class="featured-controls">
+        <button class="featured-btn" id="featPrev" aria-label="Previous">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="featured-btn" id="featNext" aria-label="Next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="featured-track-wrapper">
+      <div class="featured-track" id="featTrack">
+
+        <div class="featured-slide">
+          <div class="featured-slide-img">
+            <img src="http://www.thermotechdenver.com/images/product_sanitary-expanson_large.png" alt="Sanitary Expansion Joint" loading="lazy">
+            <span class="featured-slide-badge">Sanitary</span>
+          </div>
+          <div class="featured-slide-body">
+            <h3>Sanitary Expansion Joint</h3>
+            <p>Custom-built expansion joints designed to meet or exceed FDA and 3A sanitary standards for food, dairy, and pharmaceutical piping.</p>
+            <a href="http://www.thermotechdenver.com/sanitary_expansion-joint.php" class="card-link">Learn More</a>
+          </div>
+        </div>
+
+        <div class="featured-slide">
+          <div class="featured-slide-img">
+            <img src="http://www.thermotechdenver.com/images/product_sanitary-flexible_large.png" alt="Sanitary Flexible Connector" loading="lazy">
+            <span class="featured-slide-badge">Sanitary</span>
+          </div>
+          <div class="featured-slide-body">
+            <h3>Sanitary Flexible Connector</h3>
+            <p>Silicone-lined stainless steel connectors engineered for sanitary applications with CIP compatibility and long service life.</p>
+            <a href="http://www.thermotechdenver.com/sanitary_flexible-connector.php" class="card-link">Learn More</a>
+          </div>
+        </div>
+
+        <div class="featured-slide">
+          <div class="featured-slide-img">
+            <img src="http://www.thermotechdenver.com/images/product_sanitary-hose_large.png" alt="Food Grade Silicone Hose" loading="lazy">
+            <span class="featured-slide-badge">Sanitary</span>
+          </div>
+          <div class="featured-slide-body">
+            <h3>Food Grade Silicone Hose</h3>
+            <p>Premium food-grade silicone transfer hoses suitable for demanding beverage, dairy, and pharmaceutical processing lines.</p>
+            <a href="http://www.thermotechdenver.com/sanitary_food-grade.php" class="card-link">Learn More</a>
+          </div>
+        </div>
+
+        <div class="featured-slide">
+          <div class="featured-slide-img">
+            <img src="http://www.thermotechdenver.com/images/product_sanitary-hose_large.png" alt="FlexFlo Transfer Hose" loading="lazy">
+            <span class="featured-slide-badge">Sanitary</span>
+          </div>
+          <div class="featured-slide-body">
+            <h3>FlexFlo Transfer Hose</h3>
+            <p>Flexible sanitary transfer hoses with smooth bore interior designed for hygienic product conveyance and easy cleaning.</p>
+            <a href="http://www.thermotechdenver.com/sanitary_flexflow.php" class="card-link">Learn More</a>
+          </div>
+        </div>
+
+        <div class="featured-slide">
+          <div class="featured-slide-img">
+            <img src="http://www.thermotechdenver.com/images/product_industrial-expansion-fbx_large.png" alt="Industrial Expansion Joints" loading="lazy">
+            <span class="featured-slide-badge">Industrial</span>
+          </div>
+          <div class="featured-slide-body">
+            <h3>Industrial Expansion Joints</h3>
+            <p>Heavy-duty expansion joints for HVAC, power generation, and industrial piping systems — built to absorb thermal movement and vibration.</p>
+            <a href="http://www.thermotechdenver.com/industrial_expansion-joints.php" class="card-link">Learn More</a>
+          </div>
+        </div>
+
+        <div class="featured-slide">
+          <div class="featured-slide-img">
+            <img src="http://www.thermotechdenver.com/images/product_industrial-flex-flanged_large.png" alt="Flexible Metal Connectors and Hoses" loading="lazy">
+            <span class="featured-slide-badge">Industrial</span>
+          </div>
+          <div class="featured-slide-body">
+            <h3>Flexible Metal Connectors & Hoses</h3>
+            <p>Braided stainless steel metal hoses and connectors for high-pressure, high-temperature industrial and commercial applications.</p>
+            <a href="http://www.thermotechdenver.com/industrial_flex-metal-connectors.php" class="card-link">Learn More</a>
+          </div>
+        </div>
+
+        <div class="featured-slide">
+          <div class="featured-slide-img">
+            <img src="http://www.thermotechdenver.com/images/product_industrial-edpm-spherical_large.png" alt="Rubber Connectors and Expansion Joints" loading="lazy">
+            <span class="featured-slide-badge">Industrial</span>
+          </div>
+          <div class="featured-slide-body">
+            <h3>Rubber Connectors & Expansion Joints</h3>
+            <p>Durable rubber expansion joints and connectors designed to reduce noise, absorb vibration, and compensate for piping misalignment.</p>
+            <a href="http://www.thermotechdenver.com/industrial_rubber-connectors.php" class="card-link">Learn More</a>
+          </div>
+        </div>
+
+        <div class="featured-slide">
+          <div class="featured-slide-img">
+            <img src="http://www.thermotechdenver.com/images/product_industrial-expansion-compensator_large.png" alt="Expansion Compensators" loading="lazy">
+            <span class="featured-slide-badge">Industrial</span>
+          </div>
+          <div class="featured-slide-body">
+            <h3>Expansion Compensators</h3>
+            <p>Precision expansion compensators engineered to handle axial, lateral, and angular movements in complex piping configurations.</p>
+            <a href="http://www.thermotechdenver.com/industrial_expansion-compensators.php" class="card-link">Learn More</a>
+          </div>
+        </div>
+
+        <div class="featured-slide">
+          <div class="featured-slide-img">
+            <img src="http://www.thermotechdenver.com/images/products_custom-group.jpg" alt="Custom Fabrication" loading="lazy" style="object-fit: cover; padding: 0;">
+            <span class="featured-slide-badge">Custom</span>
+          </div>
+          <div class="featured-slide-body">
+            <h3>Custom Fabrication</h3>
+            <p>Made-to-order adapters, pipe assemblies, and specialty connectors built in our Denver machine and welding shop to your exact specifications.</p>
+            <a href="http://www.thermotechdenver.com/customization.php" class="card-link">Learn More</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="featured-dots" id="featDots"></div>
+  </div>
+</section>
+
 <!-- ═══ PRODUCT CATEGORIES ═══ -->
 <section class="products-section">
   <div class="container">
@@ -520,7 +811,7 @@
         <img src="images_and_videos/About-Thermo-Tech-image.png" alt="Thermo Tech Facility">
       </div>
       <div class="about-content">
-        <div class="overline">About Thermo Tech</div>
+        <div class="overline">Our History</div>
         <h2>Founded in 1954. Built on Innovation.</h2>
         <p>Thermo Tech Inc. has operated reliably and continuously since 1954. Our company started as a manufacturer's rep organization providing sales and service of hydronic heating and industrial equipment. Soon, we were involved in fabricating stainless steel flexible hoses and connectors for aerospace.</p>
         <p>With our innovative process of bonding a proprietary, food grade silicone lining onto stainless steel, we produce sanitary, food grade flexible connectors and transfer hoses for the food processing, dairy, pharmaceutical and beverage industries across the country.</p>
@@ -572,6 +863,74 @@
     <div class="cta-buttons">
       <a href="http://www.thermotechdenver.com/request-a-quote.php" class="btn btn-white btn-lg">Request a Quote</a>
       <a href="http://www.thermotechdenver.com/installation-instructions.php" class="btn btn-outline btn-lg">Installation Instructions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="overline">Testimonials</div>
+      <h2>What Our Clients Say</h2>
+      <p>Trusted by engineers, plant managers, and procurement teams across the country.</p>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>"Thermo Tech delivered exactly what we needed — a custom sanitary connector that met all our FDA requirements. Their turnaround time and quality were outstanding."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JM</div>
+          <div>
+            <div class="testimonial-name">James M.</div>
+            <div class="testimonial-role">Plant Manager, Food & Beverage</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>"We've relied on Thermo Tech for over a decade for our industrial expansion joints. Their engineering team truly understands piping challenges and always delivers reliable solutions."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SR</div>
+          <div>
+            <div class="testimonial-name">Sarah R.</div>
+            <div class="testimonial-role">Mechanical Engineer, HVAC Systems</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>"The custom fabrication capabilities at Thermo Tech are second to none. They built a one-of-a-kind connector assembly for our brewery that solved a persistent vibration issue."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">DK</div>
+          <div>
+            <div class="testimonial-name">David K.</div>
+            <div class="testimonial-role">Operations Director, Craft Brewery</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -660,6 +1019,82 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function() {
+  const track = document.getElementById('featTrack');
+  const slides = track.querySelectorAll('.featured-slide');
+  const prevBtn = document.getElementById('featPrev');
+  const nextBtn = document.getElementById('featNext');
+  const dotsContainer = document.getElementById('featDots');
+  let current = 0;
+  let perView = 3;
+  let autoTimer;
+
+  function getPerView() {
+    if (window.innerWidth <= 768) return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 3;
+  }
+
+  function maxIndex() {
+    return Math.max(0, slides.length - perView);
+  }
+
+  function buildDots() {
+    dotsContainer.innerHTML = '';
+    const total = maxIndex() + 1;
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'featured-dot' + (i === current ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.addEventListener('click', function() { goTo(i); });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateTrack() {
+    const gap = 24;
+    const slideWidth = (track.parentElement.offsetWidth - gap * (perView - 1)) / perView;
+    const offset = current * (slideWidth + gap);
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current >= maxIndex();
+    dotsContainer.querySelectorAll('.featured-dot').forEach(function(d, i) {
+      d.className = 'featured-dot' + (i === current ? ' active' : '');
+    });
+  }
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, maxIndex()));
+    updateTrack();
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function() {
+      current = current >= maxIndex() ? 0 : current + 1;
+      updateTrack();
+    }, 4000);
+  }
+
+  prevBtn.addEventListener('click', function() { goTo(current - 1); });
+  nextBtn.addEventListener('click', function() { goTo(current + 1); });
+
+  window.addEventListener('resize', function() {
+    perView = getPerView();
+    if (current > maxIndex()) current = maxIndex();
+    buildDots();
+    updateTrack();
+  });
+
+  perView = getPerView();
+  buildDots();
+  updateTrack();
+  resetAuto();
+})();
+</script>
 
 </body>
 </html>
