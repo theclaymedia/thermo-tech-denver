@@ -516,29 +516,67 @@
   /* ─── HISTORY TIMELINE ─── */
   .timeline-section { padding: 80px 0; background: var(--white); }
   .timeline {
-    position: relative; max-width: 900px; margin: 48px auto 0;
-    padding-left: 40px;
+    position: relative; max-width: 700px; margin: 48px auto 0;
+    display: flex; flex-direction: column; align-items: center;
   }
+  /* Vertical connecting line */
   .timeline::before {
-    content: ''; position: absolute; left: 15px; top: 0; bottom: 0;
-    width: 2px; background: var(--warm-gray);
+    content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 3px; background: var(--orange); transform: translateX(-50%);
+    border-radius: 2px;
   }
   .timeline-item {
-    position: relative; padding-bottom: 40px; padding-left: 32px;
+    position: relative; width: 100%;
+    padding: 0 0 0 0; margin-bottom: 0;
+    display: flex; justify-content: center;
   }
-  .timeline-item:last-child { padding-bottom: 0; }
+  /* Connector segment between cards */
+  .timeline-item::before {
+    content: ''; position: absolute; left: 50%; top: -24px;
+    width: 3px; height: 24px; background: var(--orange);
+    transform: translateX(-50%);
+  }
+  .timeline-item:first-child::before { display: none; }
+  /* Dot on the line */
   .timeline-dot {
-    position: absolute; left: -33px; top: 4px;
-    width: 14px; height: 14px; border-radius: 50%;
-    background: var(--orange); border: 3px solid var(--white);
-    box-shadow: 0 0 0 2px var(--orange);
+    position: absolute; left: 50%; top: -12px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--white); border: 3px solid var(--orange);
+    transform: translateX(-50%); z-index: 2;
+    box-shadow: 0 0 0 4px rgba(232,119,34,0.15);
+    transition: all 0.3s var(--ease);
+  }
+  .timeline-item:first-child .timeline-dot { top: 0; }
+  .timeline-item:hover .timeline-dot {
+    background: var(--orange); box-shadow: 0 0 0 8px rgba(232,119,34,0.2);
+    transform: translateX(-50%) scale(1.2);
+  }
+  /* Orange card box */
+  .timeline-card {
+    background: var(--orange); color: var(--white);
+    border-radius: var(--radius-lg); padding: 36px 40px;
+    width: 100%; margin-top: 20px; position: relative; z-index: 1;
+    transition: all 0.35s var(--ease); cursor: default;
+    box-shadow: 0 6px 24px rgba(232,119,34,0.2);
+  }
+  .timeline-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(232,119,34,0.35);
+    background: var(--orange-dark);
   }
   .timeline-year {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--orange); margin-bottom: 6px;
+    display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--white); margin-bottom: 8px;
+    background: rgba(255,255,255,0.18); padding: 4px 12px; border-radius: 100px;
   }
-  .timeline-item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
-  .timeline-item p { font-size: 0.88rem; color: var(--text-body); line-height: 1.7; }
+  .timeline-card h3 {
+    font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; color: var(--white);
+  }
+  .timeline-card p {
+    font-size: 0.88rem; color: rgba(255,255,255,0.85); line-height: 1.7;
+  }
+  /* Spacing between cards */
+  .timeline-item + .timeline-item { margin-top: 24px; }
 
   /* ─── MANUFACTURING PROCESS ─── */
   .process-section { padding: 80px 0; background: var(--white); }
@@ -1136,45 +1174,59 @@
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-year">1954</div>
-        <h3>Company Founded</h3>
-        <p>Thermo Tech Inc. is established in Denver, Colorado as a manufacturer's representative organization providing sales and service of hydronic heating and industrial equipment.</p>
+        <div class="timeline-card">
+          <div class="timeline-year">1954</div>
+          <h3>Company Founded</h3>
+          <p>Thermo Tech Inc. is established in Denver, Colorado as a manufacturer's representative organization providing sales and service of hydronic heating and industrial equipment.</p>
+        </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-year">1960s</div>
-        <h3>Aerospace Expansion</h3>
-        <p>The company begins fabricating stainless steel flexible hoses and connectors for the aerospace industry, developing precision manufacturing expertise that would define its future.</p>
+        <div class="timeline-card">
+          <div class="timeline-year">1960s</div>
+          <h3>Aerospace Expansion</h3>
+          <p>The company begins fabricating stainless steel flexible hoses and connectors for the aerospace industry, developing precision manufacturing expertise that would define its future.</p>
+        </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-year">1970s</div>
-        <h3>Industrial Piping Solutions</h3>
-        <p>Thermo Tech adapts its aerospace-grade piping products to provide practical solutions for vibration isolation, thermal expansion, and misalignment in HVAC and industrial piping systems.</p>
+        <div class="timeline-card">
+          <div class="timeline-year">1970s</div>
+          <h3>Industrial Piping Solutions</h3>
+          <p>Thermo Tech adapts its aerospace-grade piping products to provide practical solutions for vibration isolation, thermal expansion, and misalignment in HVAC and industrial piping systems.</p>
+        </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-year">1980s</div>
-        <h3>Silicone Bonding Breakthrough</h3>
-        <p>Development of the proprietary process for bonding food-grade silicone onto stainless steel — a breakthrough that opens the door to the sanitary food processing market.</p>
+        <div class="timeline-card">
+          <div class="timeline-year">1980s</div>
+          <h3>Silicone Bonding Breakthrough</h3>
+          <p>Development of the proprietary process for bonding food-grade silicone onto stainless steel — a breakthrough that opens the door to the sanitary food processing market.</p>
+        </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-year">1990s</div>
-        <h3>Sanitary Market Leadership</h3>
-        <p>Thermo Tech becomes a leading supplier of sanitary flexible connectors and transfer hoses for the food processing, dairy, pharmaceutical, and beverage industries nationwide.</p>
+        <div class="timeline-card">
+          <div class="timeline-year">1990s</div>
+          <h3>Sanitary Market Leadership</h3>
+          <p>Thermo Tech becomes a leading supplier of sanitary flexible connectors and transfer hoses for the food processing, dairy, pharmaceutical, and beverage industries nationwide.</p>
+        </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-year">2000s</div>
-        <h3>Facilities Expansion</h3>
-        <p>The company relocates to the expanded facility at 12401 E 37th Ave in Denver, adding advanced machining, welding, and testing capabilities to meet growing demand.</p>
+        <div class="timeline-card">
+          <div class="timeline-year">2000s</div>
+          <h3>Facilities Expansion</h3>
+          <p>The company relocates to the expanded facility at 12401 E 37th Ave in Denver, adding advanced machining, welding, and testing capabilities to meet growing demand.</p>
+        </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-year">Today</div>
-        <h3>Custom Manufacturing Excellence</h3>
-        <p>Serving 20+ industries across North America with a full range of custom-manufactured flexible connectors, expansion joints, and compensators in rubber, metal, and PTFE — all built in Denver.</p>
+        <div class="timeline-card">
+          <div class="timeline-year">Today</div>
+          <h3>Custom Manufacturing Excellence</h3>
+          <p>Serving 20+ industries across North America with a full range of custom-manufactured flexible connectors, expansion joints, and compensators in rubber, metal, and PTFE — all built in Denver.</p>
+        </div>
       </div>
     </div>
   </div>
