@@ -513,70 +513,173 @@
   }
   .metric-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); font-weight: 500; }
 
-  /* ─── HISTORY TIMELINE ─── */
+  /* ─── HISTORY TIMELINE (snaking grid) ─── */
   .timeline-section { padding: 80px 0; background: var(--white); }
   .timeline {
-    position: relative; max-width: 700px; margin: 48px auto 0;
-    display: flex; flex-direction: column; align-items: center;
+    position: relative; margin: 48px auto 0;
   }
-  /* Vertical connecting line */
-  .timeline::before {
-    content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
-    width: 3px; background: var(--orange); transform: translateX(-50%);
-    border-radius: 2px;
+  /* Each row of 3 cards */
+  .timeline-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    position: relative;
   }
-  .timeline-item {
-    position: relative; width: 100%;
-    padding: 0 0 0 0; margin-bottom: 0;
+  /* Horizontal connector line across the row */
+  .timeline-row::before {
+    content: ''; position: absolute; top: 9px;
+    left: calc(100% / 6); right: calc(100% / 6);
+    height: 5px; background: var(--orange); z-index: 1;
+    border-radius: 3px;
+  }
+  /* Single-item last row: no horizontal line */
+  .timeline-row-single::before { display: none; }
+  /* Center the single item */
+  .timeline-row-single {
     display: flex; justify-content: center;
   }
-  /* Connector segment between cards */
-  .timeline-item::before {
-    content: ''; position: absolute; left: 50%; top: -24px;
-    width: 3px; height: 24px; background: var(--orange);
-    transform: translateX(-50%);
+  .timeline-row-single .timeline-item {
+    width: calc(100% / 3);
   }
-  .timeline-item:first-child::before { display: none; }
-  /* Dot on the line */
+
+  /* Vertical connector between rows */
+  .timeline-connector {
+    position: relative; height: 48px;
+  }
+  .timeline-connector::before {
+    content: ''; position: absolute; top: 0; bottom: 0;
+    width: 5px; background: var(--orange); border-radius: 3px;
+  }
+  .timeline-connector-right::before { right: calc(100% / 6 - 1px); }
+
+  /* Individual timeline item */
+  .timeline-item {
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; padding: 0 12px;
+  }
+  /* Node dot */
   .timeline-dot {
-    position: absolute; left: 50%; top: -12px;
-    width: 18px; height: 18px; border-radius: 50%;
-    background: var(--white); border: 3px solid var(--orange);
-    transform: translateX(-50%); z-index: 2;
-    box-shadow: 0 0 0 4px rgba(232,119,34,0.15);
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--white); border: 4px solid var(--orange);
+    z-index: 3; flex-shrink: 0; position: relative;
+    box-shadow: 0 0 0 5px rgba(232,119,34,0.12);
     transition: all 0.3s var(--ease);
   }
-  .timeline-item:first-child .timeline-dot { top: 0; }
   .timeline-item:hover .timeline-dot {
-    background: var(--orange); box-shadow: 0 0 0 8px rgba(232,119,34,0.2);
-    transform: translateX(-50%) scale(1.2);
+    background: var(--orange);
+    box-shadow: 0 0 0 10px rgba(232,119,34,0.18);
+    transform: scale(1.3);
   }
-  /* Orange card box */
+  /* Vertical stem from dot down to card */
+  .timeline-stem {
+    width: 5px; height: 10px; background: var(--orange); flex-shrink: 0;
+    border-radius: 3px;
+  }
+  /* Year badge on the stem */
+  .timeline-year {
+    background: var(--orange); color: var(--white);
+    font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em;
+    padding: 5px 16px; border-radius: 100px; white-space: nowrap;
+    z-index: 2; box-shadow: 0 2px 8px rgba(232,119,34,0.25);
+    transition: all 0.3s var(--ease); flex-shrink: 0;
+  }
+  .timeline-item:hover .timeline-year {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(232,119,34,0.4);
+  }
+  /* Second stem below year */
+  .timeline-stem2 {
+    width: 5px; height: 16px; background: var(--orange); flex-shrink: 0;
+    border-radius: 3px;
+  }
+  /* Orange card */
   .timeline-card {
     background: var(--orange); color: var(--white);
-    border-radius: var(--radius-lg); padding: 36px 40px;
-    width: 100%; margin-top: 20px; position: relative; z-index: 1;
+    border-radius: var(--radius-lg); padding: 28px 24px;
+    width: 100%; position: relative; z-index: 1;
     transition: all 0.35s var(--ease); cursor: default;
     box-shadow: 0 6px 24px rgba(232,119,34,0.2);
+    text-align: center; flex: 1;
+  }
+  /* Arrow pointing up from card to stem */
+  .timeline-card::before {
+    content: ''; position: absolute; top: -8px; left: 50%;
+    transform: translateX(-50%); width: 0; height: 0;
+    border-left: 10px solid transparent; border-right: 10px solid transparent;
+    border-bottom: 10px solid var(--orange);
+    transition: border-color 0.35s var(--ease);
   }
   .timeline-card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 16px 48px rgba(232,119,34,0.35);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 56px rgba(232,119,34,0.35);
     background: var(--orange-dark);
   }
-  .timeline-year {
-    display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--white); margin-bottom: 8px;
-    background: rgba(255,255,255,0.18); padding: 4px 12px; border-radius: 100px;
-  }
+  .timeline-card:hover::before { border-bottom-color: var(--orange-dark); }
   .timeline-card h3 {
-    font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; color: var(--white);
+    font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; color: var(--white);
   }
   .timeline-card p {
-    font-size: 0.88rem; color: rgba(255,255,255,0.85); line-height: 1.7;
+    font-size: 0.85rem; color: rgba(255,255,255,0.85); line-height: 1.7;
   }
-  /* Spacing between cards */
-  .timeline-item + .timeline-item { margin-top: 24px; }
+  /* Reversed row (even rows read right-to-left) */
+  .timeline-row-reverse { direction: rtl; }
+  .timeline-row-reverse .timeline-item { direction: ltr; }
+
+  /* Snake connector: 2000s → down → right → down → Today */
+  .timeline-connector-snake {
+    position: relative; height: 72px;
+    margin-left: calc(100% / 6 - 2px);
+    margin-right: calc(100% - 50% - 3px);
+  }
+  .timeline-connector-snake .snake-vertical,
+  .timeline-connector-snake .snake-horizontal,
+  .timeline-connector-snake .snake-vertical-end { display: none; }
+  /* Left drop + bottom curve */
+  .timeline-connector-snake::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-left: 5px solid var(--orange);
+    border-bottom: 5px solid var(--orange);
+    border-top: none; border-right: none;
+    border-bottom-left-radius: 20px;
+  }
+  /* Short vertical drop on right, starts below the bottom border */
+  .timeline-connector-snake::after {
+    content: ''; position: absolute; top: 100%; right: 0;
+    width: 5px; height: 12px;
+    background: var(--orange); border-radius: 3px;
+  }
+
+  /* Today row: position card in the 2nd column */
+  .timeline-row-today {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+  }
+  .timeline-row-today .timeline-item {
+    grid-column: 2; width: auto;
+  }
+
+  @media (max-width: 1024px) {
+    .timeline-row { grid-template-columns: repeat(2, 1fr); }
+    .timeline-row::before { left: 25%; right: 25%; }
+    .timeline-connector-right::before { right: 25%; }
+
+    .timeline-row-today { grid-template-columns: repeat(2, 1fr); }
+    .timeline-row-today .timeline-item { grid-column: 2; }
+    .timeline-connector-snake {
+      margin-left: calc(25% - 2px);
+      margin-right: calc(100% - 50% - 3px);
+    }
+  }
+  @media (max-width: 768px) {
+    .timeline-row { grid-template-columns: 1fr; gap: 0; }
+    .timeline-row::before { display: none; }
+    .timeline-connector { height: 0; }
+    .timeline-connector::before { display: none; }
+    .timeline-connector-snake { height: 0; margin: 0; }
+    .timeline-connector-snake::before, .timeline-connector-snake::after { display: none; }
+    .timeline-row-reverse { direction: ltr; }
+    .timeline-row-today { display: flex; justify-content: center; }
+    .timeline-row-today .timeline-item { grid-column: auto; width: 100%; }
+    .timeline-item { padding: 0; margin-bottom: 24px; }
+  }
 
   /* ─── MANUFACTURING PROCESS ─── */
   .process-section { padding: 80px 0; background: var(--white); }
@@ -1172,62 +1275,102 @@
       <p>From a manufacturer's rep organization to an industry-leading custom manufacturer — our story of continuous evolution.</p>
     </div>
     <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-year">1954</div>
-          <h3>Company Founded</h3>
-          <p>Thermo Tech Inc. is established in Denver, Colorado as a manufacturer's representative organization providing sales and service of hydronic heating and industrial equipment.</p>
+
+      <!-- Row 1: left to right -->
+      <div class="timeline-row">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-stem"></div>
+          <span class="timeline-year">1954</span>
+          <div class="timeline-stem2"></div>
+          <div class="timeline-card">
+            <h3>Company Founded</h3>
+            <p>Thermo Tech Inc. is established in Denver, Colorado as a manufacturer's representative organization providing sales and service of hydronic heating and industrial equipment.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-stem"></div>
+          <span class="timeline-year">1960s</span>
+          <div class="timeline-stem2"></div>
+          <div class="timeline-card">
+            <h3>Aerospace Expansion</h3>
+            <p>The company begins fabricating stainless steel flexible hoses and connectors for the aerospace industry, developing precision manufacturing expertise that would define its future.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-stem"></div>
+          <span class="timeline-year">1970s</span>
+          <div class="timeline-stem2"></div>
+          <div class="timeline-card">
+            <h3>Industrial Piping Solutions</h3>
+            <p>Thermo Tech adapts its aerospace-grade piping products to provide practical solutions for vibration isolation, thermal expansion, and misalignment in HVAC and industrial piping systems.</p>
+          </div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-year">1960s</div>
-          <h3>Aerospace Expansion</h3>
-          <p>The company begins fabricating stainless steel flexible hoses and connectors for the aerospace industry, developing precision manufacturing expertise that would define its future.</p>
+
+      <!-- Connector: drops down on the right side -->
+      <div class="timeline-connector timeline-connector-right"></div>
+
+      <!-- Row 2: right to left (reversed) -->
+      <div class="timeline-row timeline-row-reverse">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-stem"></div>
+          <span class="timeline-year">1980s</span>
+          <div class="timeline-stem2"></div>
+          <div class="timeline-card">
+            <h3>Silicone Bonding Breakthrough</h3>
+            <p>Development of the proprietary process for bonding food-grade silicone onto stainless steel — a breakthrough that opens the door to the sanitary food processing market.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-stem"></div>
+          <span class="timeline-year">1990s</span>
+          <div class="timeline-stem2"></div>
+          <div class="timeline-card">
+            <h3>Sanitary Market Leadership</h3>
+            <p>Thermo Tech becomes a leading supplier of sanitary flexible connectors and transfer hoses for the food processing, dairy, pharmaceutical, and beverage industries nationwide.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-stem"></div>
+          <span class="timeline-year">2000s</span>
+          <div class="timeline-stem2"></div>
+          <div class="timeline-card">
+            <h3>Facilities Expansion</h3>
+            <p>The company relocates to the expanded facility at 12401 E 37th Ave in Denver, adding advanced machining, welding, and testing capabilities to meet growing demand.</p>
+          </div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-year">1970s</div>
-          <h3>Industrial Piping Solutions</h3>
-          <p>Thermo Tech adapts its aerospace-grade piping products to provide practical solutions for vibration isolation, thermal expansion, and misalignment in HVAC and industrial piping systems.</p>
+
+      <!-- Connector: L-shape from 2000s down then right to "Today" -->
+      <div class="timeline-connector-snake">
+        <!-- Vertical drop from 2000s position -->
+        <div class="snake-vertical"></div>
+        <!-- Horizontal bridge to the right -->
+        <div class="snake-horizontal"></div>
+        <!-- Vertical drop to Today node -->
+        <div class="snake-vertical-end"></div>
+      </div>
+
+      <!-- Row 3: Today card aligned under the end of the snake -->
+      <div class="timeline-row timeline-row-single timeline-row-today">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-stem"></div>
+          <span class="timeline-year">Today</span>
+          <div class="timeline-stem2"></div>
+          <div class="timeline-card">
+            <h3>Custom Manufacturing Excellence</h3>
+            <p>Serving 20+ industries across North America with a full range of custom-manufactured flexible connectors, expansion joints, and compensators in rubber, metal, and PTFE — all built in Denver.</p>
+          </div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-year">1980s</div>
-          <h3>Silicone Bonding Breakthrough</h3>
-          <p>Development of the proprietary process for bonding food-grade silicone onto stainless steel — a breakthrough that opens the door to the sanitary food processing market.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-year">1990s</div>
-          <h3>Sanitary Market Leadership</h3>
-          <p>Thermo Tech becomes a leading supplier of sanitary flexible connectors and transfer hoses for the food processing, dairy, pharmaceutical, and beverage industries nationwide.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-year">2000s</div>
-          <h3>Facilities Expansion</h3>
-          <p>The company relocates to the expanded facility at 12401 E 37th Ave in Denver, adding advanced machining, welding, and testing capabilities to meet growing demand.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="timeline-year">Today</div>
-          <h3>Custom Manufacturing Excellence</h3>
-          <p>Serving 20+ industries across North America with a full range of custom-manufactured flexible connectors, expansion joints, and compensators in rubber, metal, and PTFE — all built in Denver.</p>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
